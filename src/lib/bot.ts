@@ -19,6 +19,8 @@ export default class Bot {
     dryRun: false,
   } as const;
 
+  static posts : number = 0
+
   constructor(service: AtpAgentOptions["service"]) {
     this.#agent = new AtpAgent({ service });
   }
@@ -58,7 +60,7 @@ export default class Bot {
     const bot = new Bot(service);
     await bot.login(bskyAccount);
     const text = (await getPostText()).trim();
-    if (!dryRun) {
+    if (!dryRun && Bot.posts++ < 5) {
       await bot.post(text);
     } else {
       console.log(text);
