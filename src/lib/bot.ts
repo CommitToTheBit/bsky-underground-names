@@ -60,7 +60,7 @@ export default class Bot {
     const bot = new Bot(service);
     await bot.login(bskyAccount);
     const text = (await getPostText()).trim();
-    if (!dryRun && Bot.posts++ < 5) {
+    if (!dryRun) {
       await bot.post(text);
     } else {
       console.log(text);
