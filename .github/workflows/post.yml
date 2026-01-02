@@ -14,9 +14,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version-file: ".nvmrc"
-      - run |
-          test -n "$BSKY_HANDLE" || echo "HANDLE missing"
-          test -n "$BSKY_PASSWORD" || echo "PASSWORD missing"
       - run: npm ci
       - run: npm run build
       - name: Send post
