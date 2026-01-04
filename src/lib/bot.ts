@@ -61,7 +61,15 @@ export default class Bot {
     await bot.login(bskyAccount);
     const text = (await getPostText()).trim();
     if (!dryRun) {
-      await bot.post(text);
+
+		// ---------------------------------------------------------------------
+		// 02-Jan-2026: For simplicity, let's only post "successful" searches.
+		// ---------------------------------------------------------------------
+		if (text.length > 0 && text.length <= 300)
+      	{
+			await bot.post(text);
+		}
+
     } else {
       console.log(text);
     }
